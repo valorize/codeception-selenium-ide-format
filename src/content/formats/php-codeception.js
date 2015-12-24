@@ -267,6 +267,10 @@ function formatCommand(command, indent) {
             result += '->waitForElementVisible(\''+getSelector(command.target)+'\');\n';
             break;
 
+        case 'selectAndWait':
+            result += '->selectOption(\''+getSelector(command.target)+'\', "'+ command.value+'");\n';
+            break;
+
         default:
           result += '->' + command.command + '====' + command.target + '|' + command.value + "|\n";
       }
