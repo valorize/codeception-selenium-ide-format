@@ -271,6 +271,10 @@ function formatCommand(command, indent) {
             result += '->selectOption(\''+getSelector(command.target)+'\', "'+ command.value+'");\n';
             break;
 
+        case 'assertElementPresent':
+            result += '->seeElement(\''+getSelector(command.target)+'\');\n';       
+            break;
+
         default:
           result += '->' + command.command + '====' + command.target + '|' + command.value + "|\n";
       }
