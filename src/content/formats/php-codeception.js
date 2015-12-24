@@ -216,9 +216,58 @@ function formatCommand(command, indent) {
         case 'refresh':
             result += '->reloadPage();\n';
           break;
+        case 'selectWindow':
+              if (command.target == 'null') {
+                    result += '->switchToWindow();\n';
+               } else {
+                    result += '->switchToWindow("'+command.target+'");\n';
+               }
+          break;
+        case 'selectFrame':
+              if (command.target == 'null') {
+                    result += '->switchToIFrame();\n';
+               } else {
+                    result += '->switchToIFrame("'+command.target+'");\n';
+               }
+          break;
+        case 'assertSelectedLabel':
+            var target = getSelector(command.target);
+            result += '->seeOptionIsSelected("'+target+'", "'+ command.value+'");\n';
+            break;
 
+        case 'assertConfirmation':
+            result += '->seeInPopup("'+command.target+'");\n';
+            break;
 
-          default:
+        case 'chooseOkOnNextConfirmation':
+            result += '->acceptPopup();\n';
+            break;
+
+        case 'chooseCancelOnNextConfirmation':
+            result += '->cancelPopup();\n';
+            break;
+
+        case 'fireEvent':
+            switch(command.value){
+                case 'blur':
+                result += '->executeJS("$("'+getSelector(command.target)+'").blur()");\n';
+                    break;
+            }
+            break;
+
+        case 'assertChecked':
+            result += '->seeCheckboxIsChecked("'+getSelector(command.target)+'");\n';
+            break;
+
+        case 'mouseOver':
+            result += '->moveMouseOver("'+getSelector(command.target)+'");\n';
+            break;
+
+        case 'waitForElementPresent':
+            result += '->waitForElementVisible(\''+getSelector(command.target)+'\');\n';
+            break;
+
+        default:
           result += '->' + command.command + '====' + command.target + '|' + command.value + "|\n";
       }
 
