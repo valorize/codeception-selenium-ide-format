@@ -452,7 +452,7 @@ function underscore(text) {
  */
 options = {
   header: '<?php\n'
-    + '${variable} = new WebGuy($scenario);\n'
+    + '${variable} = new AcceptanceTester($scenario);\n'
     + '${variable}->wantTo("${action}");\n'
     + '${content}\n',
   testHeader: "<?php\n\n"
@@ -463,7 +463,7 @@ options = {
     + indents(2) + "public function _after() {}\n\n"
     + indents(2) + "${content}\n\n"
     + '}',
-  testClassHeader: 'public function ${testClass} (\Webguy ${variable})\n'
+  testClassHeader: 'public function ${testClass} (\AcceptanceTester ${variable})\n'
     + '{\n\n'
     + '${variable}->wantTo("${action}");\n'
     + '${content}\n'
@@ -478,7 +478,7 @@ options = {
 //configForm = '<textbox id="options_nameOfTheOption"/>'
 
 this.configForm =
-        '<description>Variable for WebGuy 123</description>' +
+        '<description>Variable for AcceptanceTester 123</description>' +
         '<textbox id="options_variable" />' +
         '<description>Cept</description>' +
         '<textbox id="options_header" multiline="true" flex="1" rows="4"/>' +
