@@ -19,7 +19,7 @@ Plugin Options
 You can change the markup for the files in the below options. This allows you to add your own include helpers, 
 namespaces, comments, groups ect to your automated generated tests.
 
-**Variable for WebGuy**
+**Variable for AcceptanceTester**
 ```
 $i
 ```
@@ -29,7 +29,7 @@ Test Case Export
 *Cept file*
 ```
 <?php
-${variable} = new WebGuy($scenario);
+${variable} = new AcceptanceTester($scenario);
 ${variable}->wantTo("${action}");
 ${content}
 ```
@@ -44,8 +44,8 @@ class ${suiteClass} {
 
 protected ${variable};
 
-public function _before() {}
-public function _after() {}
+public function _before(\AcceptanceTester ${variable}) {}
+public function _after(\AcceptanceTester ${variable}) {}
 
 ${content}
 }
@@ -53,7 +53,7 @@ ${content}
 **Cest Function**
 *Each test case is represented as a function within the cest*
 ```
-    public function ${testClass} (\Webguy ${variable})
+    public function ${testClass} (\AcceptanceTester ${variable})
     {
         ${variable}->wantTo('${action}');
         ${content}
